@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="/static/js/request.js"></script>
+    <script type="text/javascript" src="/static/js/alert.js"></script>
+
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/buttons.css">
+    <link rel="stylesheet" href="/static/css/alert_box.css">
+
+    <meta charset="UTF-8">
+    <title>Shop</title>
+</head>
+<body id="body">
+    <div id="alert_box" class="alert-box success">Item added to list successfully!</div>
+    <div class="wrap" id="wrap">
+        <h1 class="main-header">My Shop</h1>
+        <div class="heading">
+            <h1 class="header-wrap">Product Range</h1>
+            <a class="header-wrap view-list-button" style="float:right" href="/product_list">View List</a>
+        </div>
+        <!--    generated table gets inserted here-->
+
+    </div>
+</body>
+
+<script>
+
+let alert_box = document.getElementById('alert_box');
+let inputs = document.getElementsByClassName('item-qty');
+let tot_prices = document.getElementsByClassName('item-total-price')[0];
+
+for (let x=0; x < inputs.length; x++) {
+    inputs[x] = logKey;
+}
+
+window.addEventListener("load", function () {
+    document.getElementById("wrap").innerHTML += networkRequest("gen_prod_table");
+}, false);
+
+function logKey(e) {
+  tot_prices.textContent += `${e.code}`;
+}
+
+function add_to_list(product_id) {
+    let item_quantity = document.getElementById(product_id + "_input").value;
+
+    let response = networkRequest("add_list_item", product_id, item_quantity);
+
+    if (response === "") {
+        show_alert(alert_box)
+    }
+    if (response === "Not enough stock!") {
+        alert("Not enough stock!");
+    }
+}
+
+</script>
+</html>
+

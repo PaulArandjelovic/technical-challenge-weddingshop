@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="/static/js/request.js"></script>
+    <script type="text/javascript" src="/static/js/alert.js"></script>
+
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/buttons.css">
+    <link rel="stylesheet" href="/static/css/alert_box.css">
+    <link rel="stylesheet" href="/static/css/checkout.css">
+
+    <meta charset="UTF-8">
+    <title>Shop</title>
+</head>
+<body id="body">
+    <div id="alert_box" class="alert-box success">Item removed successfully!</div>
+    <div class="wrap" id="wrap">
+        <h1 class="main-header">My Shop</h1>
+        <div class="heading">
+            <h1 class="header-wrap">List</h1>
+            <a class="header-wrap view-list-button" style="float:right" href="/" onclick="">View Product Range</a>
+        </div>
+        <!--    generated table gets inserted here-->
+
+    </div>
+</body>
+
+<script>
+let alert_box = document.getElementById('alert_box');
+
+window.addEventListener("load", function () {
+    document.getElementById("wrap").innerHTML += networkRequest("gen_checkout_table");
+}, false);
+
+function remove_list_item(product_id) {
+  let item_elem = document.getElementById('item_' + product_id);
+  let grand_total_elem = document.getElementById('grand_total');
+  let subtotal_elem = document.getElementById('subtotal');
+
+  let item_total_price = parseFloat(document.getElementById('total_price').innerHTML.split('£')[1]);
+  let grand_total_value = parseFloat(grand_total_elem.innerHTML.split('£')[1]);
+
+  grand_total_value -= item_total_price;
+  grand_total_value = grand_total_value.toFixed(2)
+
+  grand_total_elem.innerHTML = '£' + grand_total_value.toString();
+  subtotal_elem.innerHTML = '£' + grand_total_value.toString()
+
+  networkRequest("remove_list_item", product_id);
+  show_alert(alert_box);
+
+  item_elem.className = 'removed';
+  setTimeout(function(){
+    item_elem.remove();
+  }, 500);
+}
+
+</script>
+</html>
+

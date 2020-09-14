@@ -1,0 +1,67 @@
+.view-list-button:link, .view-list-button:visited {
+	 text-decoration: none;
+	 font-family: 'Montserrat', sans-serif;
+	 letter-spacing: -0.015em;
+	 font-size: 0.75em;
+	 padding: 1em;
+	 color: #fff;
+	 background: #DAA520;
+	 font-weight: bold;
+	 border-radius: 50px;
+	 text-align: right;
+	 transition: all 0.25s linear;
+}
+.view-list-button:after {
+	 content: "\276f";
+	 padding: 0.5em;
+	 position: relative;
+	 right: 0;
+	 transition: all 0.15s linear;
+}
+.view-list-button:hover, .view-list-button:focus, .view-list-button:active {
+	 background: #f69679;
+}
+.view-list-button:hover:after, .view-list-button:focus:after, .view-list-button:active:after {
+	 right: -10px;
+}
+
+.button{
+  display: inline-block;
+  padding: 10px 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+}
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+.button.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  background-color: #4CAF50;
+  box-shadow: none;
+}
+
+/* Remove from checkout list */
+.button.remove {
+  background-color: #DC143C
+}
+
+/* Removing item from list animation */
+.removed {
+  opacity: 0;
+  transition: all 0.5s ease-out;
+}

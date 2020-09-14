@@ -1,0 +1,22 @@
+.alert-box {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+.success {
+  color: #3c763d;
+  text-align: center;
+  background-color: #dfffd8;
+  border-color: #d6e9c6;
+}
+#alert_box {
+  opacity: 0;
+  transition: opacity 1s;
+}
+#alert_box.fade {
+  opacity: 1;
+}
